@@ -16,8 +16,11 @@ import java.util.List;
 
 @Dao
 public interface ProductDao {
+    @Query("SELECT * FROM product")
+    LiveData<List<ProductEntity>> loadAllProduct();
+
     @Query("SELECT * FROM product where productId = :productId")
-    LiveData<List<ProductEntity>> loadProduct(int productId);
+    LiveData<ProductEntity> loadProduct(int productId);
 
     @Query("SELECT * FROM product where productId = :productId")
     List<ProductEntity> loadProductSync(int productId);
